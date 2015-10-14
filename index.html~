@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS the first steps</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<div class="wrap">
+		<h1>Basic JavaScript</h1>
+		<h2>Hoisting in JavaScript</h2>
+		<p>This is a bad practice:</p>
+		<p>
+		<code>
+			function foo(n) {
+				&nbsp; console.log('foo called with ' + n );
+			}
+			foo(2);
+
+			function foo (n) {
+				&nbsp; console.log('foo redefined with ' + n);
+			}
+			foo(2);
+
+		</code>
+		</p>
+		<div id="result"></div>
+		<p>
+			This is a better practice,
+		</p>
+		<p>
+			And it avoids what's known as hoisting in JavaScript,<br />
+			it's happened in the code example above.
+		</p>
+		<p>
+			Basically the second function get's brought or 'hoisted' to the top and<br />
+			overwritting the first function declaration.
+		</p>
+		<p>
+			<code>
+				var foo = function (n) {
+				&nbsp; console.log('foo called with ' + n );
+				}
+
+				foo = function (n) {
+				&nbsp; console.log('foo redefined with ' + n );
+				}
+
+				foo(2);
+			</code>
+		</p>
+		<div id="result2"></div>
+		<p>
+			Let's talk about arguments real quick.
+		</p>
+		<p>
+			<code>
+				var max = function (a, b) {
+				&nbsp; if (a > b)
+				&nbsp;&nbsp; return a
+				&nbsp; return b
+				}
+
+				max(8, 9, 99);
+			</code>
+		</p>
+		<div id='result3'></div>
+		<p>
+		This is how we get around JavaScript handling of extra arguments
+		Most languages will throw an error when you pass too many arguments
+		The function was expecting a certain amount of arguments and you passed too many
+		JavaScript doesn't complain, it just ignors the extra arguments
+		This will lead to unexpected results in some cases.
+		</p>
+		<p>
+			<code>
+				// being super explicit about the var keyword here.
+				// you can declare all your variables with just one var
+				// keyword and seperate the variables with commas.
+				var args = function () {
+					var large = arguments[0];
+					var i;
+					for (i = 0; i < arguments.length; i++) {
+					  &nbsp;if (large < arguments[i])
+						&nbsp;&nbsp;large = arguments[i]
+					&nbsp;}
+					&nbsp;&nbsp;return large;
+				}
+			</code>
+		</p>
+		<div id="results"></div>
+		<h2>This</h2>
+		<p>
+			Every function has 2 special things now.
+			First we've seen that functions have the arguments object attached to it
+		</p>
+		<p>
+			There is also a special keyword <em>this</em>
+		</p>
+		<p>
+			<code>
+				var baz = function ()
+				&nbsp; console.log(this);
+				&nbsp; return'this is the variable saying...'+ this;
+				}
+
+				baz();
+			</code>
+			<code>
+				var baz = function (a, b) {
+				&nbsp;console.log(this);
+				&nbsp;console.log(a + ' ' + b);
+				}
+
+			</code>
+			<h2>Apply and Call</h2>
+			<h3>example of using .apply(this, []), and .call(this, {})</h3>
+			<p>
+				<code>
+					baz(1, 2);
+					baz.apply('hello ', [3, 4]);
+					baz.call('howdy there, 3, 4');
+				</code>
+		</p>
+			<p id="output"></p>
+			<h2>Higher order functions</h2>
+			<h3>Here is forEach</h3>
+			<p>
+			<code>
+				var list = [1, 2, 3]
+				list.forEach(function (e) {
+				&nbsp; console.log(e);
+				});
+			</code>
+			</p>
+			<p>
+			<code>
+				var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+				console.log(list.filter(function (e)) {
+				&nbsp;return e % 2 === 0;
+				});
+			</code>
+			</p>
+			<p id="output2"></p>
+		<br />
+		<hr />
+		<h2>Creating Objects in JavaScript.</h2>
+		<p>
+			Here's how we create objects in JavaScript
+		</p>
+		<ul id='list'>
+			<li>list created with HTML</li>
+		</ul>
+	<h2>We can also create Objects by creating a 'class' in JavaScript</h2>
+	<p>Here is an example:</p>
+	<p>
+	<code>
+		// Car is the constructor
+		var Car = function (config) {
+			&nbsp; &nbsp; this.year  = config.year;
+			&nbsp; &nbsp; this.model = config.model;
+			&nbsp; &nbsp; this.color = config.color;
+			&nbsp; &nbsp; this.type  = config.type;
+			&nbsp; &nbsp; return this;
+		}
+		/* car is the instance */
+
+		var car = new Car({
+		&nbsp; year :'2016',
+		&nbsp; model:'Lexus',
+		&nbsp; color:'Pearl',
+		&nbsp; type :'X11',
+		});
+		var car2 = new Car({
+			&nbsp;year : '1967',
+			&nbsp;model: 'Pontiac',
+			&nbsp;color: 'Maroon',
+			&nbsp;type : 'Firebird'
+		});
+
+		Car.prototype.display = function () {
+		&nbsp;	return 'This new car is a ' + this.color + ', ' + this.year + ', ' + this.model + ' ' + this.type;
+		}
+
+		console.log(car.display());
+		console.log(car2.display());
+		// I'm actually using innerHTML to display
+		// the text in the document or DOM
+	</code>
+	</p>
+	<p id='car'></p>
+	</div>
+	<footer>
+		<p>
+			This is the footer stuff, why do I have a footer here?
+		</p>
+	</footer>
+	<script src="basic.js"></script>
+</body>
+</html>
