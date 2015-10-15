@@ -121,31 +121,17 @@ console.log(sam.sing());
 //Car.call(foobar, '2015');
 //console.log(foobar);
 
-
-var Bike = function (year) {
-	console.log('Bike called...');
-	this.year = year;
-}
-
-Bike.prototype.km = 0;
-Bike.prototype.drive = function (dist) {
-	console.log('driving a new ' + this.year + ' model bike');
-	this.km = this.km + dist;
-}
-
-var bike1 = new Bike(2015);
-var bike2 = new Bike(2016);
-//console.log(car1);
-//console.log(car2);
-
-console.log('bike1.km = '+ bike1.km);
-console.log('bike2.km = '+ bike2.km);
-
-bike1.drive(120);
-console.log('bike1 drove ' + bike1.km);
-console.log('bike2 drove ' + bike2.km);
-// gets are deep
-// sets are shallow
+//var Car = function (year) {
+// console.log('Car called...');
+// this.year = year;
+//}
+//Car.prototype.km = 0;
+//Car.prototype.drive = function (dist) {
+//	console.log('driving a new ' + this.year + ' model car');
+//	this.km = this.km + dist;
+//}
+//var car = new Car(2015);
+//var car2 = new Car(2016);
 
 /*
 	The above does 3 things (when called new)
@@ -191,3 +177,38 @@ cartxt.innerHTML += car.display()+'<br />';
 cartxt.innerHTML += car2.display()+'<br />';
 // a better way
 
+
+var Bike = function (year) {
+	console.log('Bike called...');
+	this.year = year;
+}
+
+Bike.prototype.km = 0;
+Bike.prototype.drive = function (dist) {
+	console.log('driving a new ' + this.year + ' model bike');
+	this.km = this.km + dist;
+}
+
+var bike1 = new Bike(2015);
+var bike2 = new Bike(2016);
+
+console.log('bike1.km = '+ bike1.km);
+console.log('bike2.km = '+ bike2.km);
+
+bike1.drive(120);
+console.log('bike1 drove ' + bike1.km);
+console.log('bike2 drove ' + bike2.km);
+
+console.log('I am bike 1\'s year ' + bike1.year);
+var propname = 'km';
+console.log('I am bike 1\'s km driven ' + bike1[propname]);
+console.log('I am bike 2\'s km driven ' + bike2[propname]);
+
+// gets are deep
+// sets are shallow
+var bk1 = document.getElementById('bk1');
+for (var prop in bike1) {
+	//console.log('this is a property in bike1 '+ prop + ' ' + bike1[prop]);
+	console.log('this is bike1 hasOwnProperty '+ prop + ' ' + bike1.hasOwnProperty(prop));
+	bk1.innerHTML += 'This is a property in bike1: ' + prop + ' '+bike1[prop]+'<br />';
+}

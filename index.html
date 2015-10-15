@@ -189,6 +189,37 @@
 	</code>
 	</p>
 	<p id='car'></p>
+	<p>
+		<code>
+			var Bike = function (year) {
+				&nbsp;console.log('Bike called...');
+				&nbsp;this.year = year;
+			}
+
+			Bike.prototype.km = 0;
+			Bike.prototype.drive = function (dist) {
+				&nbsp;console.log('driving a new ' + this.year + ' model bike');
+				&nbsp;this.km = this.km + dist;
+			}
+
+			var bike1 = new Bike(2015);
+			var bike2 = new Bike(2016);
+
+			console.log('bike1.km = '+ bike1.km);
+			console.log('bike2.km = '+ bike2.km);
+
+			bike1.drive(120);
+			console.log('bike1 drove ' + bike1.km);
+			console.log('bike2 drove ' + bike2.km);
+			// gets are deep
+			// sets are shallow
+			var bk1 = document.getElementById('bk1');
+			for (var prop in bike1) {
+			&nbsp;bk1.innerHTML +='This is a property in bike1 ' + prop;
+			}
+		</code>
+	</p>
+	<p id="bk1"></p>
 	</div><!-- end wrap -->
 	<footer>
 		<p>
