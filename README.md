@@ -3,3 +3,7 @@
 *  going over hoisting
 *  creating objects
 *  creating classes
+*  prototypal inheritence
+*  hasOwnProperty
+
+JavaScript is a fun and powerful language once you get it's nauances.
