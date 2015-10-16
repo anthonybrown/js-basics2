@@ -461,3 +461,14 @@ footer {
 	text-align: center;
 	margin-top: 5em;
 }
+
+	.custom {
+	  overflow: scroll;
+	  width: 64%;
+	  min-width: 367px;
+	  padding: 1em;
+	  border-radius: 5px;
+	  word-wrap: break-word;
+	  white-space: pre-wrap;
+	}
+

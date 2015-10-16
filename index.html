@@ -4,29 +4,25 @@
 	<meta charset="UTF-8">
 	<title>JS the first steps</title>
 	<link rel='stylesheet' href='sons-of-obsidian.css'>
-	<link rel="stylesheet" href="prettify.css">
 	<link rel='stylesheet' href='styles.css'>
 	<script src='prettify.js'></script>
 </head>
-<body onload='prettyprint();' class='clear'>
+<body onload='prettyPrint()' class='clear'>
 	<div class="wrap">
 		<h1>Basic JavaScript</h1>
 		<h2>Hoisting in JavaScript</h2>
 		<p>This is a bad practice:</p>
-		<p>
-		<pre>
-			function foo(n) {
-				&nbsp; console.log('foo called with ' + n );
-			}
-			foo(2);
+<pre class='prettyprint custom'>
+function foo(n) {
+	&nbsp; console.log('foo called with ' + n );
+}
+foo(2);
 
-			function foo (n) {
-				&nbsp; console.log('foo redefined with ' + n);
-			}
-			foo(2);
-
-		</pre>
-		</p>
+function foo (n) {
+	&nbsp; console.log('foo redefined with ' + n);
+}
+foo(2);
+</pre>
 		<div id="result"></div>
 		<p>
 			This is a better practice,
@@ -39,34 +35,30 @@
 			Basically the second function get's brought or 'hoisted' to the top and<br />
 			overwritting the first function declaration.
 		</p>
-		<p>
-			<pre>
-				var foo = function (n) {
-				&nbsp; console.log('foo called with ' + n );
-				}
+<pre class='prettyprint custom'>
+var foo = function (n) {
+&nbsp; console.log('foo called with ' + n );
+}
 
-				foo = function (n) {
-				&nbsp; console.log('foo redefined with ' + n );
-				}
+foo = function (n) {
+&nbsp; console.log('foo redefined with ' + n );
+}
 
-				foo(2);
-			</pre>
-		</p>
+foo(2);
+</pre>
 		<div id="result2"></div>
 		<p>
 			Let's talk about arguments real quick.
 		</p>
-		<p>
-			<pre>
-				var max = function (a, b) {
-				&nbsp; if (a > b)
-				&nbsp;&nbsp; return a
-				&nbsp; return b
-				}
+<pre>
+var max = function (a, b) {
+&nbsp; if (a > b)
+&nbsp;&nbsp; return a
+&nbsp; return b
+}
 
-				max(8, 9, 99);
-			</pre>
-		</p>
+max(8, 9, 99);
+</pre>
 		<div id='result3'></div>
 		<p>
 		This is how we get around JavaScript handling of extra arguments
@@ -75,22 +67,20 @@
 		JavaScript doesn't complain, it just ignors the extra arguments
 		This will lead to unexpected results in some cases.
 		</p>
-		<p>
-			<pre>
-				// being super explicit about the var keyword here.
-				// you can declare all your variables with just one var
-				// keyword and seperate the variables with commas.
-				var args = function () {
-					var large = arguments[0];
-					var i;
-					for (i = 0; i < arguments.length; i++) {
-					  &nbsp;if (large < arguments[i])
-						&nbsp;&nbsp;large = arguments[i]
-					&nbsp;}
-					&nbsp;&nbsp;return large;
-				}
-			</pre>
-		</p>
+<pre class='prettyprint custom'>
+// being super explicit about the var keyword here.
+// you can declare all your variables with just one var
+// keyword and seperate the variables with commas.
+var args = function () {
+	var large = arguments[0];
+	var i;
+	for (i = 0; i < arguments.length; i++) {
+		&nbsp;if (large < arguments[i])
+		&nbsp;&nbsp;large = arguments[i]
+	&nbsp;}
+	&nbsp;&nbsp;return large;
+}
+</pre>
 		<div id="results"></div>
 		<h2>This</h2>
 		<p>
@@ -100,50 +90,42 @@
 		<p>
 			There is also a special keyword <em>this</em>
 		</p>
-		<p>
-			<pre>
-				var baz = function ()
-				&nbsp; console.log(this);
-				&nbsp; return'this is the variable saying...'+ this;
-				}
+<pre class='prettyprint custom'>
+var baz = function ()
+&nbsp; console.log(this);
+&nbsp; return'this is the variable saying...'+ this;
+}
 
-				baz();
-			</pre>
-			<pre>
-				var baz = function (a, b) {
-				&nbsp;console.log(this);
-				&nbsp;console.log(a + ' ' + b);
-				}
-
-			</pre>
+baz();
+</pre>
+<pre>
+var baz = function (a, b) {
+&nbsp;console.log(this);
+&nbsp;console.log(a + ' ' + b);
+}
+</pre>
 			<h2>Apply and Call</h2>
 			<h3>example of using .apply(this, []), and .call(this, {})</h3>
-			<p>
-				<pre>
-					baz(1, 2);
-					baz.apply('hello ', [3, 4]);
-					baz.call('howdy there, 3, 4');
-				</pre>
-		</p>
+<pre class='prettyprint custom'>
+baz(1, 2);
+baz.apply('hello ', [3, 4]);
+baz.call('howdy there, 3, 4');
+</pre>
 			<p id="output"></p>
 			<h2>Higher order functions</h2>
 			<h3>Here is forEach</h3>
-			<p>
-			<pre>
-				var list = [1, 2, 3]
-				list.forEach(function (e) {
-				&nbsp; console.log(e);
-				});
-			</pre>
-			</p>
-			<p>
-			<pre>
-				var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-				console.log(list.filter(function (e)) {
-				&nbsp;return e % 2 === 0;
-				});
-			</pre>
-			</p>
+<pre>
+var list = [1, 2, 3]
+list.forEach(function (e) {
+&nbsp; console.log(e);
+});
+</pre>
+<pre class='prettyprint custom'>
+var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(list.filter(function (e)) {
+&nbsp;return e % 2 === 0;
+});
+</pre>
 			<p id="output2"></p>
 		<br />
 		<hr />
@@ -156,72 +138,68 @@
 		</ul>
 	<h2>We can also create Objects by creating a 'class' in JavaScript</h2>
 	<p>Here is an example:</p>
-	<p>
-	<pre>
-		// Car is the constructor
-		var Car = function (config) {
-			&nbsp; &nbsp; this.year  = config.year;
-			&nbsp; &nbsp; this.model = config.model;
-			&nbsp; &nbsp; this.color = config.color;
-			&nbsp; &nbsp; this.type  = config.type;
-			&nbsp; &nbsp; return this;
-		}
-		/* car is the instance */
+<pre class='prettyprint custom'>
+// Car is the constructor
+var Car = function (config) {
+	&nbsp; &nbsp; this.year  = config.year;
+	&nbsp; &nbsp; this.model = config.model;
+	&nbsp; &nbsp; this.color = config.color;
+	&nbsp; &nbsp; this.type  = config.type;
+	&nbsp; &nbsp; return this;
+}
+/* car is the instance */
 
-		var car = new Car({
-		&nbsp; year :'2016',
-		&nbsp; model:'Lexus',
-		&nbsp; color:'Pearl',
-		&nbsp; type :'X11',
-		});
-		var car2 = new Car({
-			&nbsp;year : '1967',
-			&nbsp;model: 'Pontiac',
-			&nbsp;color: 'Maroon',
-			&nbsp;type : 'Firebird'
-		});
+var car = new Car({
+&nbsp; year :'2016',
+&nbsp; model:'Lexus',
+&nbsp; color:'Pearl',
+&nbsp; type :'X11',
+});
+var car2 = new Car({
+	&nbsp;year : '1967',
+	&nbsp;model: 'Pontiac',
+	&nbsp;color: 'Maroon',
+	&nbsp;type : 'Firebird'
+});
 
-		Car.prototype.display = function () {
-		&nbsp;	return 'This new car is a ' + this.color + ', ' + this.year + ', ' + this.model + ' ' + this.type;
-		}
+Car.prototype.display = function () {
+&nbsp;	return 'This new car is a ' + this.color + ', ' + this.year + ', ' + this.model + ' ' + this.type;
+}
 
-		console.log(car.display());
-		console.log(car2.display());
-		// I'm actually using innerHTML to display
-		// the text in the document or DOM
-	</pre>
-	</p>
+console.log(car.display());
+console.log(car2.display());
+// I'm actually using innerHTML to display
+// the text in the document or DOM
+</pre>
 	<p id='car'></p>
-	<p>
-		<pre>
-			var Bike = function (year) {
-				&nbsp;console.log('Bike called...');
-				&nbsp;this.year = year;
-			}
+<pre class='prettyprint custom'>
+var Bike = function (year) {
+	&nbsp;console.log('Bike called...');
+	&nbsp;this.year = year;
+}
 
-			Bike.prototype.km = 0;
-			Bike.prototype.drive = function (dist) {
-				&nbsp;console.log('driving a new ' + this.year + ' model bike');
-				&nbsp;this.km = this.km + dist;
-			}
+Bike.prototype.km = 0;
+Bike.prototype.drive = function (dist) {
+	&nbsp;console.log('driving a new ' + this.year + ' model bike');
+	&nbsp;this.km = this.km + dist;
+}
 
-			var bike1 = new Bike(2015);
-			var bike2 = new Bike(2016);
+var bike1 = new Bike(2015);
+var bike2 = new Bike(2016);
 
-			console.log('bike1.km = '+ bike1.km);
-			console.log('bike2.km = '+ bike2.km);
+console.log('bike1.km = '+ bike1.km);
+console.log('bike2.km = '+ bike2.km);
 
-			bike1.drive(120);
-			console.log('bike1 drove ' + bike1.km);
-			console.log('bike2 drove ' + bike2.km);
-			// gets are deep
-			// sets are shallow
-			var bk1 = document.getElementById('bk1');
-			for (var prop in bike1) {
-			&nbsp;bk1.innerHTML +='This is a property in bike1 ' + prop;
-			}
-		</pre>
-	</p>
+bike1.drive(120);
+console.log('bike1 drove ' + bike1.km);
+console.log('bike2 drove ' + bike2.km);
+// gets are deep
+// sets are shallow
+var bk1 = document.getElementById('bk1');
+for (var prop in bike1) {
+&nbsp;bk1.innerHTML +='This is a property in bike1 ' + prop;
+}
+</pre>
 	<p id="bk1"></p>
 	</div><!-- end wrap -->
 	<footer>
